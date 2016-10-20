@@ -2,6 +2,9 @@
 
 var ghPages = require('gulp-gh-pages');
 var i5ting_toc = require('i5ting_toc')
+//函数可以返回当前正在执行的项目路径
+var pwd = process.cwd()  
+
 
 var argv = process.argv;
 argv.shift();
@@ -11,11 +14,9 @@ console.log('r1')
 
 var is_open = true;
 var markd_config = {
-	debug: false
+	debug: false,
+  index: true
 }
-
-//函数可以返回当前正在执行的项目路径
-var pwd = process.cwd()  
 
 var source_file_name = pwd + '/README.md'
 var file_name = source_file_name.split('/').pop();;
@@ -29,19 +30,11 @@ console.log('dest_file_path=' + dest_file_path);
 
 i5ting_toc(pwd, source_file_name, dest_file_path, is_open, markd_config);
 
-console.log('end')
+console.log('end' + pwd + '/preview/**/*')
 
 
-var vfs = require('vinyl-fs');
+var ghpages = require('gh-pages');
 
-var cfg = {
-  remoteUrl: "git@github.com:i5ting/r1-test.git",
-  branch: 'new',
-  message: '[ci skip] temporary commit ("new" branch)',
-  push: true,
-  force: true
-}
-
-vfs.src(pwd + './preview/**/*').pipe(ghPages(
-  cfg
-));
+ghpages.publish(pwd + '/preview', function(err) { 
+  console.log('end')
+});
