@@ -23,5 +23,9 @@
   "homepage": "https://github.com/i5ting/r1#readme",
   "dependencies": {
     "i5ting_toc": "^1.1.2"
+  },
+  "devDependencies": {
+    "gulp-gh-pages": "^0.5.4",
+    "vinyl-fs": "^2.4.4"
   }
 }

@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+var ghPages = require('gulp-gh-pages');
+var i5ting_toc = require('i5ting_toc')
+
 var argv = process.argv;
 argv.shift();
 
@@ -24,6 +27,21 @@ console.log('pwd=' + pwd);
 console.log('source_file_name=' + source_file_name);
 console.log('dest_file_path=' + dest_file_path);
 
-require('i5ting_toc')(pwd, source_file_name, dest_file_path, is_open, markd_config);
+i5ting_toc(pwd, source_file_name, dest_file_path, is_open, markd_config);
 
 console.log('end')
+
+
+var vfs = require('vinyl-fs');
+
+var cfg = {
+  remoteUrl: remoteUrl,
+  branch: 'new',
+  message: '[ci skip] temporary commit ("new" branch)',
+  push: true,
+  force: true
+}
+
+vfs.src(pwd + './preview/**/*').pipe(ghPages(
+  cfg
+));
