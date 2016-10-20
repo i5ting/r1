@@ -25,3 +25,5 @@ console.log('source_file_name=' + source_file_name);
 console.log('dest_file_path=' + dest_file_path);
 
 require('i5ting_toc')(pwd, source_file_name, dest_file_path, is_open, markd_config);
+
+console.log('end')
