@@ -35,6 +35,11 @@ console.log('end' + pwd + '/preview/**/*')
 
 var ghpages = require('gh-pages');
 
-ghpages.publish(pwd + '/preview', function(err) { 
-  console.log('end')
+console.log('start publish git pages...')
+
+ghpages.publish(pwd + '/preview', function(err) {
+  if (err) {
+    console.log(err)
+  }
+  console.log('finish publish git pages...')
 });
