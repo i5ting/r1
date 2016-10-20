@@ -35,7 +35,7 @@ console.log('end')
 var vfs = require('vinyl-fs');
 
 var cfg = {
-  remoteUrl: remoteUrl,
+  remoteUrl: "git@github.com:i5ting/r1-test.git",
   branch: 'new',
   message: '[ci skip] temporary commit ("new" branch)',
   push: true,
